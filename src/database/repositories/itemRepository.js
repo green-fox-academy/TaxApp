@@ -1,13 +1,24 @@
-const Account = require('../models/accountModel');
+const { connection } = require('../index');
 
-const findAll = () => Account.find().exec();
-const addOrRemove = async (amount, id, shouldTake) => {
-  const doc = await Account.findById(id);
-  shouldTake ? (doc.money -= amount) : (doc.money += amount);
-  return doc.save();
-};
+const Item = require('../models/itemModel');
+
+const findByUserId = userId => Item.find({ userId }).exec();
+
+// const findByUserId = userId =>
+//   new Promise((resolve, reject) => {
+//     connection.query('SELECT * FROM items WHERE user_id = ?', [userId], (err, rows) => {
+//       if (err) {
+//         return reject(err);
+//       }
+//       resolve(
+//         rows.map(row => ({
+//           ...row,
+//           taxRate: row.taxRate / 100,
+//         })),
+//       );
+//     });
+//   });
 
 module.exports = {
-  findAll,
-  addOrRemove,
+  findByUserId,
 };

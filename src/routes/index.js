@@ -1,9 +1,8 @@
 const express = require('express');
-const accountController = require('../controllers/accountController');
+const { getTaxByUserId } = require('../controllers/taxController');
 
 const router = express.Router();
 
-router.get('/accounts', accountController.findAll);
-router.post('/accounts', accountController.transfer);
+router.get('/tax', getTaxByUserId);
 
 module.exports = router;

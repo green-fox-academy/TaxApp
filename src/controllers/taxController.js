@@ -1,18 +1,13 @@
-const accountService = require('../services/accountService');
+const taxService = require('../services/taxService');
 
-const findAll = (req, res) => {
-  accountService
-    .findAll()
-    .then(account => res.json(account))
-    .catch(err => res.json(err));
-};
-
-const transfer = (req, res) => {
-  const { fromId, toId, amount } = req.body;
-  accountService.transfer(fromId, toId, amount).then(doc => res.json(doc));
+const getTaxByUserId = (req, res) => {
+  const { id: userId } = req.query;
+  if (!userId) {
+    return res.status(400).send('Missing user id');
+  }
+  taxService.calculateByUserId(userId).then(tax => res.json(tax));
 };
 
 module.exports = {
-  findAll,
-  transfer,
+  getTaxByUserId,
 };

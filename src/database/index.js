@@ -1,21 +1,22 @@
-// const mongoose = require('mongoose');
-const mysql = require('mysql');
+const mongoose = require('mongoose');
 
-// mongoose.connect(process.env.CONNECTION_STRING, {
-//   useNewUrlParser: true,
-//   useCreateIndex: true,
-//   dbName: 'TodoApp',
-// });
-
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '123',
-  database: 'Bank',
+mongoose.connect(process.env.CONNECTION_STRING, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  dbName: 'Tax',
 });
 
-connection.connect();
+// const mysql = require('mysql');
 
-module.exports = {
-  connection,
-};
+// const connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: '123',
+//   database: 'Tax',
+// });
+
+// connection.connect();
+
+// module.exports = {
+//   connection,
+// };

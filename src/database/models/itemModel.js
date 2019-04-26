@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-const tax = require('./taxModel');
 
-const accountSchema = mongoose.Schema({
+const itemSchema = mongoose.Schema({
   name: { type: String, required: true },
-  tax: tax.schema.index,
+  userId: { type: Number, required: true },
+  price: { type: Number, required: true },
+  taxRate: { type: Number, required: true },
 });
 
-module.exports = mongoose.model('Account', accountSchema);
+module.exports = mongoose.model('Item', itemSchema);
